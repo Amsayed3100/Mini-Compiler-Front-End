@@ -1,0 +1,27 @@
+# Executable files
+*.exe
+
+# Flex generated files
+src/lexer/lex.yy.c
+
+# Bison generated files
+src/parser/parser.tab.c
+src/parser/parser.tab.h
+
+# Build files
+*.o
+*.out
+
+# Debug files
+*.log
+
+# VS Code settings
+.vscode/
+
+# Windows files
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
