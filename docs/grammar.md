@@ -40,8 +40,7 @@ A statement list may contain multiple statements or be empty.
 ```
 Statement → Declaration
 Statement → Assignment
-Statement → IfStatement
-Statement → IfElseStatement
+Statement → SelectionStatement
 Statement → WhileStatement
 Statement → ForStatement
 Statement → PrintStatement
@@ -138,7 +137,9 @@ Terms perform multiplication, division and modulus operations.
 ```
 Factor → Identifier
 
-Factor → Number
+Factor → Integer
+
+Factor → Float
 
 Factor → '(' Expression ')'
 ```
@@ -203,11 +204,11 @@ RelationalOperator → !=
 
 ---
 
-## 17. If Statement
+## 17. Selection Statement
 
-```
-IfStatement → if '(' Condition ')' Block
-```
+SelectionStatement → if '(' Condition ')' Block
+
+SelectionStatement → if '(' Condition ')' Block else Block
 
 ### Example
 
@@ -220,28 +221,7 @@ if (age >= 18)
 
 ---
 
-## 18. If-Else Statement
-
-```
-IfElseStatement → if '(' Condition ')' Block else Block
-```
-
-### Example
-
-```c
-if (age >= 18)
-{
-    printf(age);
-}
-else
-{
-    printf(0);
-}
-```
-
----
-
-## 19. While Statement
+## 18. While Statement
 
 ```
 WhileStatement → while '(' Condition ')' Block
@@ -258,10 +238,17 @@ while (age < 30)
 
 ---
 
-## 20. For Statement
+## 19. For Statement
 
 ```
-ForStatement → for '(' Assignment Condition ';' Assignment ')' Block
+ForStatement
+→ for '(' AssignmentFor ';' Condition ';' AssignmentFor ')' Block
+
+AssignmentFor → Identifier '=' Expression
+
+AssignmentFor → Identifier ++
+
+AssignmentFor → Identifier --
 ```
 
 ### Example
@@ -275,10 +262,12 @@ for(i = 0; i < 10; i = i + 1)
 
 ---
 
-## 21. Print Statement
+## 20. Print Statement
 
 ```
-PrintStatement → printf '(' Identifier ')' ';'
+PrintStatement → printf '(' String PrintArguments ')' ';'
+
+PrintStatement → cout CoutArguments ';'
 ```
 
 ### Example
@@ -289,7 +278,7 @@ printf(age);
 
 ---
 
-## 22. Block
+## 21. Block
 
 ```
 Block → '{' StatementList '}'
@@ -299,7 +288,7 @@ A block contains one or more statements enclosed within braces.
 
 ---
 
-## 23. Identifier
+## 22. Identifier
 
 ```
 Identifier → Letter IdentifierTail
@@ -307,7 +296,7 @@ Identifier → Letter IdentifierTail
 
 ---
 
-## 24. Identifier Tail
+## 23. Identifier Tail
 
 ```
 IdentifierTail → Letter IdentifierTail
@@ -321,7 +310,7 @@ IdentifierTail → ε
 
 ---
 
-## 25. Letter
+## 24. Letter
 
 ```
 Letter → a-z
@@ -333,7 +322,7 @@ Letter → _
 
 ---
 
-## 26. Digit
+## 25. Digit
 
 ```
 Digit → 0
@@ -359,7 +348,7 @@ Digit → 9
 
 ---
 
-## 27. Supported Grammar Features
+## 26. Supported Grammar Features
 
 This grammar supports the following language constructs:
 
@@ -368,8 +357,7 @@ This grammar supports the following language constructs:
 - Variable Assignment
 - Arithmetic Expressions
 - Relational Expressions
-- If Statement
-- If-Else Statement
+- Selection Statement (if / if-else)
 - While Loop
 - For Loop
 - Print Statement
@@ -377,7 +365,7 @@ This grammar supports the following language constructs:
 
 ---
 
-## 28. Current Limitations
+## 27. Current Limitations
 
 The current grammar does not support:
 
@@ -390,10 +378,30 @@ The current grammar does not support:
 - Do-While Loop
 - User-defined Functions
 
-Logical operators will be added in Version 2 of the parser.
+Logical expressions are not yet parsed.
 
 ---
 
-## 29. Note
+## 28. Note
 
 This grammar is designed according to the language specification defined in `language_specification.md`. It will be directly implemented in `parser.y` using Bison (Yacc). The current version focuses on building a stable and easy-to-maintain compiler front-end before introducing more advanced language features.
+
+
+## Supported Language
+
+This compiler currently supports:
+
+- C
+- C++
+- Java (Common Syntax Only)
+
+Shared constructs include:
+
+- Variable Declaration
+- Assignment
+- Arithmetic Expressions
+- if / if-else
+- while
+- for
+- printf
+- cout

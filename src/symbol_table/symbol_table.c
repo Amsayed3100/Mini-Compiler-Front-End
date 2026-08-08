@@ -61,6 +61,23 @@ int insertSymbol(const char *name, const char *type)
 }
 
 
+char *getSymbolType(const char *name)
+{
+    int i;
+
+    for(i = 0; i < symbolCount; i++)
+    {
+        if(strcmp(symbolTable[i].name, name) == 0)
+        {
+            return symbolTable[i].type;
+        }
+    }
+
+    return NULL;
+}
+
+
+
 void displaySymbolTable()
 {
     int i;

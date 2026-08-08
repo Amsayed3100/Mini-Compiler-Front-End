@@ -1,0 +1,7 @@
+win_bison -d src/parser/parser.y -o src/parser/parser.tab.c
+win_flex -o src/lexer/lex.yy.c src/lexer/lexer.l
+gcc src/parser/parser.tab.c src/lexer/lex.yy.c src/symbol_table/symbol_table.c src/semantic/semantic.c src/tac/tac.c src/optimization/optimization.c src/codegen/codegen.c -o compiler.exe
+ .\compiler.exe
+
+
+

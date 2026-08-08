@@ -11,11 +11,11 @@ Mini Compiler Front-End is a simplified compiler developed using Flex (Lex) and 
 - Symbol Table Generation
 - Semantic Analysis
 - Three Address Code (TAC) Generation
-- Error Detection
+- 
 
 ---
 ## Technologies Used
-- C Programming Language
+- C,C++,java Programming Language
 - Flex (Lex)
 - Bison (Yacc)
 - GCC Compiler

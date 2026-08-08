@@ -16,5 +16,6 @@ void initializeSymbolTable();
 int searchSymbol(const char *name);
 int insertSymbol(const char *name, const char *type);
 void displaySymbolTable();
+char *getSymbolType(const char *name);
 
 #endif
